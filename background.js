@@ -123,11 +123,7 @@ function rewriteRequestHeader(e) {
         if (to_modify.header_name === "x-xid"){
           new_header.value = Date.now().toString();
         }
-
         e.requestHeaders.push(new_header);
-
-
-
         if (config.debug_mode) log("Add request header : name=" + to_modify.header_name +
           ",value=" + to_modify.header_value + " for url " + e.url);
       }
