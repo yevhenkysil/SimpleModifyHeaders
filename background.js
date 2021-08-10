@@ -117,6 +117,9 @@ function rewriteRequestHeader(e) {
     if ((to_modify.status === "on") && (to_modify.apply_on === "req") && (!config.use_url_contains || (config.use_url_contains && e.url.includes(to_modify.url_contains)))) {
       if (to_modify.action === "add") {
         let new_header = { "name": to_modify.header_name, "value": to_modify.header_value };
+          if(to_modify.header_name.toLowerCase() === "x-xid"){
+            "value" = Date.now();
+          }
         e.requestHeaders.push(new_header);
         if (config.debug_mode) log("Add request header : name=" + to_modify.header_name +
           ",value=" + to_modify.header_value + " for url " + e.url);
